@@ -1,0 +1,61 @@
+{
+  "expo": {
+    "name": "Scentia",
+    "slug": "scentia",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#faf9f7"
+    },
+    "scheme": "scentia",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.scentia.app",
+      "buildNumber": "1",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Scentia uses the camera to scan fragrance bottles.",
+        "NSFaceIDUsageDescription": "Scentia uses Face ID for secure login.",
+        "UIUserInterfaceStyle": "Automatic"
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#faf9f7"
+      },
+      "package": "com.scentia.app",
+      "versionCode": 1,
+      "permissions": ["USE_BIOMETRIC", "USE_FINGERPRINT", "RECEIVE_BOOT_COMPLETED", "VIBRATE", "POST_NOTIFICATIONS"],
+      "googleServicesFile": "./google-services.json"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-font",
+      "expo-secure-store",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/notification-icon.png",
+          "color": "#8b7355",
+          "androidMode": "default",
+          "androidCollapsedTitle": "Scentia"
+        }
+      ],
+      [
+        "@stripe/stripe-react-native",
+        {
+          "merchantIdentifier": "merchant.com.scentia.app",
+          "enableGooglePay": true
+        }
+      ]
+    ],
+    "experiments": { "typedRoutes": true },
+    "extra": {
+      "eas": { "projectId": "YOUR_EAS_PROJECT_ID" }
+    }
+  }
+}

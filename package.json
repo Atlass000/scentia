@@ -1,0 +1,12 @@
+{
+  "name": "scentia",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": ["app", "backend", "admin"],
+  "scripts": {
+    "app": "yarn workspace scentia-app start",
+    "admin": "yarn workspace scentia-admin dev",
+    "deploy:functions": "yarn workspace scentia-backend deploy",
+    "deploy:rules": "firebase deploy --only firestore:rules,storage"
+  }
+}

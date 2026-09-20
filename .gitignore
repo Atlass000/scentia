@@ -1,0 +1,48 @@
+# Dependencies
+node_modules/
+.yarn/
+
+# Expo
+.expo/
+dist/
+web-build/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+
+# Environment
+.env
+.env.local
+.env.*.local
+google-services.json
+GoogleService-Info.plist
+google-service-account.json
+
+# Firebase
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+
+# Build outputs
+lib/
+build/
+.next/
+out/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Secrets - NEVER commit these
+*secret*
+*credential*
+service-account*.json

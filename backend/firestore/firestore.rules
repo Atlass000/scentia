@@ -1,0 +1,43 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() { return request.auth != null; }
+    function isOwner(uid) { return request.auth.uid == uid; }
+    function isAdmin() {
+      return isSignedIn() &&
+        get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    match /users/{uid} {
+      allow read: if isOwner(uid) || isAdmin();
+      allow create: if isOwner(uid);
+      allow update: if isOwner(uid) || isAdmin();
+      allow delete: if isAdmin();
+      match /favorites/{id} { allow read, write: if isOwner(uid); }
+      match /searches/{id}  { allow read, write: if isOwner(uid); }
+    }
+
+    match /referrals/{uid} {
+      allow read:   if isSignedIn();
+      allow create: if isOwner(uid);
+      allow update: if isSignedIn();
+      allow delete: if isAdmin();
+    }
+
+    match /admins/{uid} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
+
+    match /catalog/{id} {
+      allow read:  if isSignedIn();
+      allow write: if isAdmin();
+    }
+
+    match /analytics/{id} {
+      allow create:          if isSignedIn();
+      allow read, update, delete: if isAdmin();
+    }
+  }
+}
